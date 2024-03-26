@@ -1,16 +1,26 @@
 @SuppressWarnings("unchecked")
-public class Array<T> implements Iterable<T> {
+public class DynamicArray<T> implements Iterable<T> {
+
+    public static void main(String[] args) {
+        // Example usage of the DynamicArray class
+        DynamicArray<Integer> array = new DynamicArray<>();
+        array.add(1);
+        array.add(2);
+        array.add(3);
+        System.out.println("Array elements: " + array);
+    }
 
     private T[] arr;
-    private int len = 0;       // Length user thinks array is
-    private int capacity = 0;  // Actual Array Size
+    private int len = 0; // Length user thinks DynamicArray is
+    private int capacity = 0; // Actual DynamicArray Size
 
-    public Array() {
+    public DynamicArray() {
         this(16);
     }
 
-    public Array(int capacity) {
-        if (capacity < 0) throw new IllegalArgumentException("Illegal Capacity: " + capacity);
+    public DynamicArray(int capacity) {
+        if (capacity < 0)
+            throw new IllegalArgumentException("Illegal Capacity: " + capacity);
         this.capacity = capacity;
         arr = (T[]) new Object[capacity];
     }
@@ -39,8 +49,10 @@ public class Array<T> implements Iterable<T> {
 
     public void add(T elem) {
         if (len + 1 >= capacity) {
-            if (capacity == 0) capacity = 1;
-            else capacity *= 2;
+            if (capacity == 0)
+                capacity = 1;
+            else
+                capacity *= 2;
             T[] new_arr = (T[]) new Object[capacity];
             for (int i = 0; i < len; i++)
                 new_arr[i] = arr[i];
@@ -50,12 +62,13 @@ public class Array<T> implements Iterable<T> {
     }
 
     public T removeAt(int rm_index) {
-        if (rm_index >= len || rm_index < 0) throw new IndexOutOfBoundsException();
+        if (rm_index >= len || rm_index < 0)
+            throw new IndexOutOfBoundsException();
         T data = arr[rm_index];
         T[] new_arr = (T[]) new Object[len - 1];
         for (int i = 0, j = 0; i < len; i++, j++) {
             if (i == rm_index) {
-                j--;  //skip over rm_index by fixing j temporarily
+                j--; // skip over rm_index by fixing j temporarily
             } else {
                 new_arr[j] = arr[i];
             }
@@ -105,7 +118,8 @@ public class Array<T> implements Iterable<T> {
 
     @Override
     public String toString() {
-        if (len == 0) return "[]";
+        if (len == 0)
+            return "[]";
         else {
             StringBuilder sb = new StringBuilder(len).append("[");
             for (int i = 0; i < len - 1; i++)
