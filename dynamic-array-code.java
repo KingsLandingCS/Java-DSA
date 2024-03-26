@@ -81,3 +81,22 @@ public boolean contains(Object obj){
 
     return indexOf(obj) != -1;
 }
+
+// Iterator is still fast but not as fast as iterative for loop
+@Override public java.util.Iterator <T> Iterator () {
+    return new java.util.Iterator <T> () {
+        int index = 0;
+        public boolean hasNext(){ return index < len;}
+        public T next() { return arr[index++]; }
+    };
+}
+
+@Override public String toString(){
+    if (len == 0) return "[]";
+    else{
+        StringBuilder sb = new StringBuilder (len).append("[");
+        for(int i = 0; i < len - 1; i++)
+        sb.append(arr[i] + ", ");
+        return sb.append(arr[len - 1] + "]").toString();
+    }
+}
