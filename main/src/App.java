@@ -1,10 +1,15 @@
 public class App {
     public static void main(String[] args) throws Exception {
 
-        char symbol = '@';
-        System.out.println(symbol);
-        String name = "Bro";
+        String x = "water";
+        String y = "Kool-Aid";
+        String temp;
 
-        System.out.println("Hello my name is " + name);
+        temp = x;
+        x = y;
+        y = temp;
+
+        System.out.println("x: " + x);
+        System.out.println("y: " + y);
     }
 }
